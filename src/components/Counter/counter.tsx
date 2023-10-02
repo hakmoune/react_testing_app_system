@@ -12,7 +12,7 @@ export function Counter({ description, defaultCount }: CounterProps) {
         <div>
             <h2>Desc: {description} - DC: {defaultCount}</h2>
             <button onClick={() => setCounter(counter + 1)}>+</button>
-            Current Count: {counter}
+            <span>Current Count: {counter}</span>
             <button onClick={() => setCounter(counter - 1)}>-</button>
         </div>
     );
