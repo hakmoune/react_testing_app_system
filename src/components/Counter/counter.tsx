@@ -5,16 +5,31 @@ export interface CounterProps {
     defaultCount: number
 }
 
-export function Counter({ description, defaultCount }: CounterProps) {
-    const [counter, setCounter] = useState(defaultCount)
+export const Counter: React.FC<CounterProps> = ({ description, defaultCount }) => {
+    const [counter, setCounter] = useState<number>(defaultCount)
+    const [incrementer, setIncrementer] = useState<number>(1)
+
+    const onHandleChange = (e: React.ChangeEvent<HTMLInputElement>): void => {
+        const inputValue = parseInt(e.target.value, 10)
+        setIncrementer(inputValue || 0)
+    }
 
     return (
         <div>
             <h2>Desc: {description} - DC: {defaultCount}</h2>
-            <button aria-label="increment" onClick={() => setCounter(counter + 1)}>+</button>
+            <div>
+                <input
+                    type="text"
+                    value={incrementer}
+                    onChange={onHandleChange}
+                    onFocus={(e) => e.target.select()}
+                    placeholder="incrementor"
+                />
+            </div>
+            <button aria-label="increment" onClick={() => setCounter(counter + incrementer)}>+</button>
             <span>Current Count: {counter}</span>
-            <button aria-label="decrement" onClick={() => setCounter(counter - 1)}>-</button>
-        </div>
+            <button aria-label="decrement" onClick={() => setCounter(counter - incrementer)}>-</button>
+        </div >
     );
 }
 
