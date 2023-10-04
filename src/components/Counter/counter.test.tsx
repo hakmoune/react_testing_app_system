@@ -17,6 +17,27 @@ describe("Counter", () => {
             expect(screen.getByText(/www/i)).toBeInTheDocument();
         })
 
+        describe("When the incrementor change to empty string, and + is clicked", () => {
+            beforeEach(() => {
+                act(() => {
+                    user.type(screen.getByPlaceholderText('incrementor'), "{selectall}{delete}");
+                })
+            })
+
+            describe("When clicked +", () => {
+                beforeEach(() => {
+                    act(() => {
+                        user.click(screen.getByRole("button", { name: "increment" }))
+                    })
+                })
+                it("should return 10", async () => {
+                    //expect(await screen.findByText("Current Count: 16")).toBeInTheDocument();
+                    await waitFor(() => expect(screen.getByText("Current Count: 10")).toBeInTheDocument())
+                })
+            })
+
+        })
+
         describe("When the input incrementor change to 5, and + is clicked", () => {
             beforeEach(() => {
                 act(() => {
@@ -26,13 +47,15 @@ describe("Counter", () => {
             })
 
             describe("When + is clicked", () => {
-                beforeEach(() => {
+                beforeEach(async () => {
                     user.click(screen.getByRole("button", { name: "increment" }))
                     //fireEvent.click(screen.getByRole("button", { name: "increment" }))
+                    //await screen.findByText("Current Count: 15")
+                    await waitFor(() => screen.findByText("Current Count: 15"))
                 })
-                it("Renders current count : 15", async () => {
+                it("Renders current count : 15", () => {
                     //expect(await screen.findByText("Current Count: 15")).toBeInTheDocument();
-                    await waitFor(() => expect(screen.getByText("Current Count: 15")).toBeInTheDocument());
+                    expect(screen.getByText("Current Count: 15")).toBeInTheDocument();
                 })
             })
 
