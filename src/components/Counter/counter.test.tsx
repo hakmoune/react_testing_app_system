@@ -1,4 +1,4 @@
-import { fireEvent, render, screen } from "@testing-library/react";
+import { act, fireEvent, render, screen, waitFor } from "@testing-library/react";
 import { Counter } from "./counter";
 import user from '@testing-library/user-event';
 
@@ -19,8 +19,10 @@ describe("Counter", () => {
 
         describe("When the input incrementor change to 5, and + is clicked", () => {
             beforeEach(() => {
-                user.type(screen.getByPlaceholderText('incrementor'), "{selectall}5"); //Select all then change it with 5
-                //fireEvent.change(screen.getByRole('textbox'), { target: { value: "5" } });
+                act(() => {
+                    user.type(screen.getByPlaceholderText('incrementor'), "{selectall}5"); //Select all then change it with 5
+                    //fireEvent.change(screen.getByRole('textbox'), { target: { value: "5" } });
+                })
             })
 
             describe("When + is clicked", () => {
@@ -28,15 +30,18 @@ describe("Counter", () => {
                     user.click(screen.getByRole("button", { name: "increment" }))
                     //fireEvent.click(screen.getByRole("button", { name: "increment" }))
                 })
-                it("Renders current count : 15", () => {
-                    expect(screen.getByText("Current Count: 15")).toBeInTheDocument();
+                it("Renders current count : 15", async () => {
+                    //expect(await screen.findByText("Current Count: 15")).toBeInTheDocument();
+                    await waitFor(() => expect(screen.getByText("Current Count: 15")).toBeInTheDocument());
                 })
             })
 
             describe("When - is clicked", () => {
                 beforeEach(() => {
-                    user.click(screen.getByRole("button", { name: "decrement" }))
-                    //fireEvent.click(screen.getByRole("button", { name: "increment" }))
+                    act(() => {
+                        user.click(screen.getByRole("button", { name: "decrement" }))
+                        //fireEvent.click(screen.getByRole("button", { name: "increment" }))
+                    })
                 })
                 it("Renders current count : 5", () => {
                     expect(screen.getByText("Current Count: 5")).toBeInTheDocument();
@@ -61,16 +66,21 @@ describe("Counter", () => {
 
         describe("When + is clicked", () => {
             beforeEach(() => {
-                fireEvent.click(screen.getByRole("button", { name: "increment" }))
+                act(() => {
+                    fireEvent.click(screen.getByRole("button", { name: "increment" }))
+                })
             })
-            it("Default counter = 0, and + clicked then counter = 1", () => {
-                expect(screen.getByText("Current Count: 1")).toBeInTheDocument();
+            it("Default counter = 0, and + clicked then counter = 1", async () => {
+                //expect(await screen.findByText("Current Count: 1")).toBeInTheDocument();
+                await waitFor(() => expect(screen.getByText("Current Count: 1")).toBeInTheDocument());
             })
         })
 
         describe("When - is clicked", () => {
             beforeEach(() => {
-                fireEvent.click(screen.getByRole("button", { name: "decrement" }))
+                act(() => {
+                    fireEvent.click(screen.getByRole("button", { name: "decrement" }))
+                })
             })
             it("Default counter = 0, and - clicked then counter = -1", () => {
                 expect(screen.getByText("Current Count: -1")).toBeInTheDocument();

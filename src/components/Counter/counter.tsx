@@ -26,7 +26,7 @@ export const Counter: React.FC<CounterProps> = ({ description, defaultCount }) =
                     placeholder="incrementor"
                 />
             </div>
-            <button aria-label="increment" onClick={() => setCounter(counter + incrementer)}>+</button>
+            <button aria-label="increment" onClick={() => setTimeout(() => setCounter(counter + incrementer))}>+</button>
             <span>Current Count: {counter}</span>
             <button aria-label="decrement" onClick={() => setCounter(counter - incrementer)}>-</button>
         </div >
