@@ -1,12 +1,15 @@
-import React from 'react';
-import logo from './logo.svg';
 import './App.css';
 import { Counter } from './components/Counter/counter';
+import { TableUI } from './components/Table/table';
+
 
 function App() {
+  const onMoney = (n: number) => console.log(`Here is your ${n}`)
+
   return (
     <div>
       <Counter description="My description" defaultCount={0} />
+      <TableUI onMoney={onMoney} />
     </div>
   );
 }

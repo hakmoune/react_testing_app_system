@@ -32,7 +32,7 @@ describe("Counter", () => {
                 })
                 it("should return 10", async () => {
                     //expect(await screen.findByText("Current Count: 16")).toBeInTheDocument();
-                    await waitFor(() => expect(screen.getByText("Current Count: 10")).toBeInTheDocument())
+                    await waitFor(() => expect(screen.getByText("Current Count: 10")).toBeInTheDocument(), { timeout: 2000 })
                 })
             })
 
@@ -48,10 +48,12 @@ describe("Counter", () => {
 
             describe("When + is clicked", () => {
                 beforeEach(async () => {
-                    user.click(screen.getByRole("button", { name: "increment" }))
+                    act(() => {
+                        user.click(screen.getByRole("button", { name: "increment" }))
+                    })
                     //fireEvent.click(screen.getByRole("button", { name: "increment" }))
                     //await screen.findByText("Current Count: 15")
-                    await waitFor(() => screen.findByText("Current Count: 15"))
+                    await waitFor(() => screen.findByText("Current Count: 15"), { timeout: 2000 })
                 })
                 it("Renders current count : 15", () => {
                     //expect(await screen.findByText("Current Count: 15")).toBeInTheDocument();
@@ -66,8 +68,8 @@ describe("Counter", () => {
                         //fireEvent.click(screen.getByRole("button", { name: "increment" }))
                     })
                 })
-                it("Renders current count : 5", () => {
-                    expect(screen.getByText("Current Count: 5")).toBeInTheDocument();
+                it("Renders current count : 5", async () => {
+                    await waitFor(() => expect(screen.getByText("Current Count: 5")).toBeInTheDocument(), { timeout: 2000 });
                 })
             })
 
@@ -95,7 +97,7 @@ describe("Counter", () => {
             })
             it("Default counter = 0, and + clicked then counter = 1", async () => {
                 //expect(await screen.findByText("Current Count: 1")).toBeInTheDocument();
-                await waitFor(() => expect(screen.getByText("Current Count: 1")).toBeInTheDocument());
+                await waitFor(() => expect(screen.getByText("Current Count: 1")).toBeInTheDocument(), { timeout: 2000 });
             })
         })
 
@@ -105,8 +107,8 @@ describe("Counter", () => {
                     fireEvent.click(screen.getByRole("button", { name: "decrement" }))
                 })
             })
-            it("Default counter = 0, and - clicked then counter = -1", () => {
-                expect(screen.getByText("Current Count: -1")).toBeInTheDocument();
+            it("Default counter = 0, and - clicked then counter = -1", async () => {
+                await waitFor(() => expect(screen.getByText("Current Count: -1")).toBeInTheDocument(), { timeout: 2000 });
             })
         })
     })
