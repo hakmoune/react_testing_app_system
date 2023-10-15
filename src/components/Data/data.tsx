@@ -6,6 +6,7 @@ import { ApiResponse, InputRefType } from "./data.type";
 export const ApiCall: React.FC = () => {
     const [dataAxios, setDataAxios] = useState<ApiResponse | null>(null);
     const [dataFetch, setDataFetch] = useState<ApiResponse | null>(null);
+
     const inputRef = useRef<InputRefType>({});
 
 
@@ -65,6 +66,26 @@ export const ApiCall: React.FC = () => {
         }
     }
 
+    //AXIOS/////////////////////////
+    const handleAddAxios = async () => {
+        try {
+            const response = await axios.post(
+                `https://dummyjson.com/products/add`,
+                { title: inputRef.current['addAxios'] },
+                { headers: { 'Content-Type': 'application/json' } }
+            )
+            if (response.status === 200) {
+                setDataAxios(prevData => ({
+                    ...prevData!,
+                    products: [response.data, ...prevData!.products]
+                }))
+            } else {
+                console.error(`Failed to create the item. Status: ${response.status}`)
+            }
+        } catch (error) {
+            console.error(`Failed to create the item. Status: ${error}`)
+        }
+    }
 
     //FETCH/////////////////////////
     useEffect(() => {
@@ -121,12 +142,36 @@ export const ApiCall: React.FC = () => {
             })
     }
 
+    //FETCH/////////////////////////
+    const handleAddFetch = () => {
+        fetch(`https://dummyjson.com/products/add`, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+                title: inputRef.current["addFetch"]
+            })
+        })
+            .then(res => {
+                if (!res.ok)
+                    throw new Error(`Failed to Add the item`)
+
+                return res.json()
+            })
+            .then(data => {
+                setDataFetch(prevData => ({
+                    ...prevData!,
+                    products: [data, ...prevData!.products]
+                }))
+            })
+            .catch(error => console.error(error.message))
+    }
+
     return (
         <div>
             <h2>List Product with axios</h2>
             <div>
-                <input type="text" />
-                <button>ADD AXIOS</button>
+                <input type="text" onChange={(e) => inputRef.current['addAxios'] = e.target.value} />
+                <button onClick={() => handleAddAxios()}>ADD AXIOS</button>
             </div>
             <ul>
                 {dataAxios &&
@@ -146,8 +191,8 @@ export const ApiCall: React.FC = () => {
 
             <h2>List Product with Fetch</h2>
             <div>
-                <input type="text" />
-                <button>ADD FETCH</button>
+                <input type="text" onChange={(e) => inputRef.current['addFetch'] = e.target.value} />
+                <button onClick={() => handleAddFetch()}>ADD FETCH</button>
             </div>
             <ul>
                 {dataFetch &&

@@ -4,3 +4,4 @@ import { ApiCall } from "./data";
 
 it.todo("Axios")
 it.todo("Fetch")
+it.todo("MSW")

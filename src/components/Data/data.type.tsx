@@ -17,5 +17,5 @@ export interface ApiResponse {
 }
 
 export type InputRefType = {
-    [key: number]: string;
+    [key: number | string]: string;
 };
