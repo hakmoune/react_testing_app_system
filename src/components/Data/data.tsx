@@ -174,18 +174,17 @@ export const ApiCall: React.FC = () => {
                 <button onClick={() => handleAddAxios()}>ADD AXIOS</button>
             </div>
             <ul>
-                {dataAxios &&
-                    dataAxios.products.map(product => (
-                        <li key={product.id}>
-                            <input
-                                type="text"
-                                defaultValue={product.title}
-                                onChange={e => inputRef.current[product.id] = e.target.value}
-                            />
-                            <button onClick={() => handleDeleteAxios(product.id)}>Delete Axios</button>
-                            <button onClick={() => handleUpdateAxios(product.id)}>Update Axios</button>
-                        </li>
-                    ))
+                {dataAxios?.products.map(product => (
+                    <li key={product.id}>
+                        <input
+                            type="text"
+                            defaultValue={product.title}
+                            onChange={e => inputRef.current[product.id] = e.target.value}
+                        />
+                        <button onClick={() => handleDeleteAxios(product.id)}>Delete Axios</button>
+                        <button onClick={() => handleUpdateAxios(product.id)}>Update Axios</button>
+                    </li>
+                ))
                 }
             </ul>
 
@@ -195,18 +194,17 @@ export const ApiCall: React.FC = () => {
                 <button onClick={() => handleAddFetch()}>ADD FETCH</button>
             </div>
             <ul>
-                {dataFetch &&
-                    dataFetch.products.map(product => (
-                        <li key={product.id}>
-                            <input
-                                type="text"
-                                defaultValue={product.title}
-                                onChange={e => inputRef.current[product.id] = e.target.value}
-                            />
-                            <button onClick={() => handleDeleteFetch(product.id)}>Delete Fetch</button>
-                            <button onClick={() => handleUpdateFetch(product.id)}>Update Fetch</button>
-                        </li>
-                    ))
+                {dataFetch?.products.map(product => (
+                    <li key={product.id}>
+                        <input
+                            type="text"
+                            defaultValue={product.title}
+                            onChange={e => inputRef.current[product.id] = e.target.value}
+                        />
+                        <button onClick={() => handleDeleteFetch(product.id)}>Delete Fetch</button>
+                        <button onClick={() => handleUpdateFetch(product.id)}>Update Fetch</button>
+                    </li>
+                ))
                 }
             </ul>
         </div>
