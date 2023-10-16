@@ -181,8 +181,8 @@ export const ApiCall: React.FC = () => {
                             defaultValue={product.title}
                             onChange={e => inputRef.current[product.id] = e.target.value}
                         />
-                        <button onClick={() => handleDeleteAxios(product.id)}>Delete Axios</button>
-                        <button onClick={() => handleUpdateAxios(product.id)}>Update Axios</button>
+                        <button onClick={() => handleDeleteAxios(product.id)}>Delete Axios {product.id}</button>
+                        <button onClick={() => handleUpdateAxios(product.id)}>Update Axios {product.id}</button>
                     </li>
                 ))
                 }
@@ -201,8 +201,8 @@ export const ApiCall: React.FC = () => {
                             defaultValue={product.title}
                             onChange={e => inputRef.current[product.id] = e.target.value}
                         />
-                        <button onClick={() => handleDeleteFetch(product.id)}>Delete Fetch</button>
-                        <button onClick={() => handleUpdateFetch(product.id)}>Update Fetch</button>
+                        <button onClick={() => handleDeleteFetch(product.id)}>Delete Fetch {product.id}</button>
+                        <button onClick={() => handleUpdateFetch(product.id)}>Update Fetch {product.id}</button>
                     </li>
                 ))
                 }
