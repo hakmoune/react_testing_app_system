@@ -170,7 +170,7 @@ export const ApiCall: React.FC = () => {
         <div>
             <h2>List Product with axios</h2>
             <div>
-                <input type="text" onChange={(e) => inputRef.current['addAxios'] = e.target.value} />
+                <input type="text" onChange={(e) => inputRef.current['addAxios'] = e.target.value} placeholder="axios value" />
                 <button onClick={() => handleAddAxios()}>ADD AXIOS</button>
             </div>
             <ul>
@@ -180,6 +180,7 @@ export const ApiCall: React.FC = () => {
                             type="text"
                             defaultValue={product.title}
                             onChange={e => inputRef.current[product.id] = e.target.value}
+                            placeholder={`axios update value ${product.id}`}
                         />
                         <button onClick={() => handleDeleteAxios(product.id)}>Delete Axios {product.id}</button>
                         <button onClick={() => handleUpdateAxios(product.id)}>Update Axios {product.id}</button>
@@ -190,7 +191,7 @@ export const ApiCall: React.FC = () => {
 
             <h2>List Product with Fetch</h2>
             <div>
-                <input type="text" onChange={(e) => inputRef.current['addFetch'] = e.target.value} />
+                <input type="text" onChange={(e) => inputRef.current['addFetch'] = e.target.value} placeholder="fetch value" />
                 <button onClick={() => handleAddFetch()}>ADD FETCH</button>
             </div>
             <ul>
@@ -200,6 +201,7 @@ export const ApiCall: React.FC = () => {
                             type="text"
                             defaultValue={product.title}
                             onChange={e => inputRef.current[product.id] = e.target.value}
+                            placeholder={`fetch update value ${product.id}`}
                         />
                         <button onClick={() => handleDeleteFetch(product.id)}>Delete Fetch {product.id}</button>
                         <button onClick={() => handleUpdateFetch(product.id)}>Update Fetch {product.id}</button>
