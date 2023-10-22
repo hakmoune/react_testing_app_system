@@ -1,10 +1,12 @@
-import { render, waitFor, screen, act, findByText, waitForElementToBeRemoved } from "@testing-library/react";
+import { render, waitFor, screen, act } from "@testing-library/react";
 import { ApiCall } from "./data";
 import axios from "axios";
 import userEvent from "@testing-library/user-event";
 
 jest.mock('axios'); // mock the axios library
 jest.mock('node-fetch');  // mock the fetch node 
+
+//const mickedAxiosGet = (axios.get as jest.Mock); // Refactorisation
 
 describe("Axios", () => {
     beforeEach(() => {
@@ -176,7 +178,7 @@ describe("Fetch", () => {
         })
     })
 
-    fit("Fetch should ad an product whet the add button is clicked", async () => {
+    it("Fetch should ad an product whet the add button is clicked", async () => {
         const mockData = { products: [{ id: 300, title: "product 300" }, { id: 301, title: "product 301" }] }
 
         global.fetch = jest.fn();
@@ -212,5 +214,3 @@ describe("Fetch", () => {
     })
 })
 
-
-it.todo("MSW")

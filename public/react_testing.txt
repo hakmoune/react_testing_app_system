@@ -284,4 +284,9 @@ to control the behavior of the axios.get method during the test.
 screen.debug(); pour faire debugger le screen et voir le render du composant
 
 
+
+<MSW for testing>
+npm install --save-dev msw whatwg-fetch
+
+
 __mocks__:
