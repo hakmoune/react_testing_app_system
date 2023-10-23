@@ -38,6 +38,7 @@ describe("Axios", () => {
 
         userEvent.click(deleteButton);
         expect(axios.delete).toHaveBeenCalledWith('https://dummyjson.com/products/1');
+        expect(axios.delete).toHaveBeenCalledTimes(1);
 
         await waitFor(() => {
             expect(element1).not.toBeInTheDocument();
